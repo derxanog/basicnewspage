@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Derxan News</title>
+    <meta name="description" content="🗞️ Derxan News 🌆 | O jornal que traz informação com rapidez, estilo e verdade 💫 Fique por dentro das principais notícias de Cidade Bella e região 🏙️ #DerxanNews">
+    <meta property="og:description" content="🗞️ Derxan News 🌆 | O jornal que traz informação com rapidez, estilo e verdade 💫 Fique por dentro das principais notícias de Cidade Bella e região 🏙️ #DerxanNews">
+    <link rel="icon" href="https://media.discordapp.net/attachments/1426658337184940052/1430325138574020729/blablabla.png?ex=68fdfad7&is=68fca957&hm=9ca4a11ec77c1f0ad1521ec8f73710929ca1aeb5e05544b1fdf410dac91c642e&=&format=webp&quality=lossless&width=960&height=960" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        (function() {
+            // Pega o tema do localStorage ou a preferência do OS
+            const currentTheme = localStorage.getItem('theme');
+            const osPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Define o tema no <html> antes da página carregar
+            if (currentTheme === 'dark' || (!currentTheme && osPreference)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>O Derxan News</h1>
+        <p class="subtitulo">Derxan News em primeira mão.</p>
+        
+        <button id="theme-toggle" class="theme-toggle" title="Mudar tema">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+    </header>
+    <nav class="main-nav">
+        <div class="container">
+            <a href="#" class="nav-link active" data-filter="geral">📰 Geral</a>
+            <a href="#materias" class="nav-link" data-filter="materia">🗞️ Matérias</a>
+            <a href="#reportagens" class="nav-link" data-filter="reportagem">📼 Reportagens</a>
+        </div>
+    </nav>
+    <main class="container">
+        <h2 id="page-title">Últimas Edições</h2>
+        
+        <div id="posts-container" class="posts-grid">
+            </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; Direitos reservados a Derxan News e a Derxan</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

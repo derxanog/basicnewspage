@@ -1,0 +1,291 @@
+/* --- 1. DEFINIÇÃO DAS VARIÁVEIS DE TEMA --- */
+:root {
+    /* Cores do Tema Claro (Padrão) */
+    --color-bg: #f4f4f4;
+    --color-text: #333;
+    --color-card-bg: #ffffff;
+    --color-heading: #1a1a1a;
+    --color-subtitle: #555;
+    --color-date: #777;
+    --color-border: #eee;
+    --color-shadow: rgba(0, 0, 0, 0.08);
+    --color-footer-bg: #333;
+    --color-footer-text: #f4f4f4;
+    --color-gold: #FFD700;
+    --color-gold-shadow: rgba(255, 215, 0, 0.6);
+
+    /* Transição suave */
+    --theme-transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] {
+    /* Cores do Tema Escuro */
+    --color-bg: #121212;
+    --color-text: #e0e0e0;
+    --color-card-bg: #1e1e1e;
+    --color-heading: #ffffff;
+    --color-subtitle: #aaaaaa;
+    --color-date: #888888;
+    --color-border: #333333;
+    --color-shadow: rgba(255, 255, 255, 0.05);
+    --color-footer-bg: #1e1e1e;
+    --color-footer-text: #e0e0e0;
+    /* O dourado fica igual */
+}
+/* ------------------------------------------- */
+
+
+/* --- 2. ESTILOS GERAIS USANDO AS VARIÁVEIS --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: var(--color-bg); /* <- MUDOU */
+    color: var(--color-text); /* <- MUDOU */
+    line-height: 1.6;
+    transition: var(--theme-transition); /* <- NOVO */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* --- Cabeçalho --- */
+.site-header {
+    background-color: var(--color-card-bg); /* <- MUDOU */
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--color-heading); /* <- MUDOU */
+    transition: var(--theme-transition); /* <- NOVO */
+    position: relative; /* Para o botão de tema */
+}
+
+.site-header h1 {
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: 3.5rem;
+    color: var(--color-heading); /* <- MUDOU */
+    margin: 0;
+    transition: var(--theme-transition); /* <- NOVO */
+}
+
+.site-header .subtitulo {
+    font-size: 1.2rem;
+    color: var(--color-subtitle); /* <- MUDOU */
+    margin: 0;
+    transition: var(--theme-transition); /* <- NOVO */
+}
+
+/* --- Grid de Posts --- */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* --- Cartão de Post (A Matéria) --- */
+.post-card {
+    background-color: var(--color-card-bg); /* <- MUDOU */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--color-shadow); /* <- MUDOU */
+    overflow: hidden;
+    transition: transform 0.3s ease, var(--theme-transition); /* <- MUDOU */
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--color-shadow); /* <- MUDOU */
+}
+
+.post-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid var(--color-border); /* <- MUDOU */
+    transition: var(--theme-transition); /* <- NOVO */
+}
+
+.post-card .card-content {
+    padding: 20px;
+}
+
+.post-card h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+    color: var(--color-heading); /* <- MUDOU */
+    transition: var(--theme-transition); /* <- NOVO */
+}
+
+.post-card .data {
+    font-size: 0.9rem;
+    color: var(--color-date); /* <- MUDOU */
+    margin: 0;
+    transition: var(--theme-transition); /* <- NOVO */
+}
+
+/* --- Destaque de Post Novo --- */
+.post-card-new {
+    position: relative; 
+    box-shadow: 0 0 15px 5px var(--color-gold-shadow), /* <- MUDOU */
+                0 4px 12px var(--color-shadow);
+}
+
+.post-card-new::after {
+    content: 'ÚLTIMA!';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--color-gold); /* <- MUDOU */
+    color: var(--color-heading); /* <- MUDOU */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* --- Rodapé --- */
+.site-footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+    background-color: var(--color-footer-bg); /* <- MUDOU */
+    color: var(--color-footer-text); /* <- MUDOU */
+    transition: var(--theme-transition); /* <- NOVO */
+}
+
+/* --- 3. ESTILOS DO NOVO BOTÃO DE TEMA --- */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--color-date);
+    color: var(--color-heading);
+    border-radius: 50px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px; /* Largura fixa */
+    height: 30px; /* Altura fixa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--theme-transition), transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--color-heading);
+}
+
+/* Esconde o ícone que NÃO está ativo */
+[data-theme="light"] .icon-moon {
+    display: none;
+}
+[data-theme="dark"] .icon-sun {
+    display: none;
+}
+
+.main-nav {
+    background-color: var(--color-card-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px 0;
+    position: sticky; /* Fica preso no topo ao rolar */
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: var(--theme-transition);
+}
+
+.main-nav .container {
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-link {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-subtitle);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-heading);
+    background-color: var(--color-bg);
+}
+
+/* Estilo do link ATIVO */
+.nav-link.active {
+    color: var(--color-heading);
+    border-bottom: 3px solid var(--color-gold);
+}
+
+/* --- ESTILOS ADICIONAIS PARA VÍDEOS E CATEGORIAS --- */
+
+/* Tags de Categoria (no card) */
+.post-card .categoria {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block; /* Garante que o padding seja aplicado */
+    margin-left: 5px;
+}
+
+.post-card .categoria.materia {
+    color: var(--color-heading);
+    background-color: var(--color-border);
+}
+
+.post-card .categoria.reportagem {
+    color: #fff;
+    background-color: #c00; /* Cor do YouTube */
+}
+
+/* Garante que o tema escuro funcione nas tags */
+[data-theme="dark"] .post-card .categoria.materia {
+    background-color: #444;
+    color: #ddd;
+}
+
+
+/* --- Estilo para Card de Vídeo (Reportagem) --- */
+
+.post-card-video .video-responsive-wrapper {
+    position: relative;
+    /* 56.25% é a proporção 16:9 (altura / largura) */
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    background-color: #000; /* Fundo preto enquanto o vídeo carrega */
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-card-video .video-responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* O card de imagem não precisa de CSS extra, mas podemos
+   garantir que a imagem se comporte bem */
+.post-card-image img {
+    aspect-ratio: 16 / 9; /* Opcional: força uma proporção */
+    object-fit: cover; /* Opcional: garante que a imagem cubra a área */
+}
